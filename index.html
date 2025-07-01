@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Биография Александр Михайлов</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #222222 100%);
+            color: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            animation: bg-pulse 8s infinite alternate;
+        }
+        
+        .main-title {
+            color: #ffffff;
+        }
+        
+        .audio-player {
+            background: rgba(20, 20, 20, 0.9);
+            border: 1px solid #666;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .audio-player:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .progress-bar {
+            height: 4px;
+            background: #444;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+        
+        .progress {
+            height: 100%;
+            background: linear-gradient(90deg, #1a73e8, #4285f4);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+        
+        .channel-card {
+            background: rgba(20, 20, 20, 0.7);
+            border: 1px solid #333;
+            transition: all 0.3s ease;
+        }
+        
+        .channel-card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 102, 255, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(0, 102, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 102, 255, 0); }
+        }
+        
+        .status-box {
+            background: rgba(10, 10, 10, 0.7);
+            border: 1px solid #999;
+            position: relative;
+            overflow: hidden;
+            animation: border-glow 3s infinite, pulse 2s infinite alternate;
+        }
+        
+        .status-box::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 102, 255, 0.2), transparent);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        @keyframes border-glow {
+            0% { box-shadow: 0 0 5px rgba(255,255,255,0.2); }
+            50% { box-shadow: 0 0 10px rgba(255,255,255,0.3); }
+            100% { box-shadow: 0 0 5px rgba(255,255,255,0.2); }
+        }
+        
+        .skill-badge {
+            background: rgba(30, 30, 30, 0.7);
+            border: 1px solid #444;
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, #0066ff, #66b3ff);
+        }
+        
+        .neon-border {
+            position: relative;
+            border: 1px solid #666;
+            animation: border-glow 4s infinite;
+        }
+        
+        .neon-border::before {
+            content: "";
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #0066ff, #66b3ff, #0066ff);
+            z-index: -1;
+            border-radius: inherit;
+        }
+        
+        .neon-border::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: #111;
+            border-radius: inherit;
+            z-index: -1;
+        }
+
+        /* Mobile styles */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 1.5rem;
+            }
+            .audio-player {
+                width: 100%;
+            }
+            .channel-card {
+                padding: 1rem;
+            }
+            .status-box {
+                padding: 1.5rem;
+            }
+            .skill-badge {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Header -->
+    <header class="py-8 px-4 md:px-12 text-center relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-20"></div>
+        <div class="container mx-auto relative z-10">
+            <h1 class="main-title text-4xl md:text-6xl font-bold mb-2">Биография Александр Михайлов</h1>
+            <p class="text-gray-400 text-lg">Родился 01.03.2010 в Киеве</p>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 md:px-8 py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column -->
+            <div class="lg:col-span-2 space-y-8">
+                <!-- Education -->
+                <section class="bg-black bg-opacity-50 p-6 rounded-xl neon-border">
+                    <h2 class="section-title text-2xl font-bold mb-4">Образование</h2>
+                    <div class="space-y-4">
+                        <div class="flex items-start">
+                            <div class="bg-gray-800 p-3 rounded-lg mr-4">
+                                <i class="fas fa-school text-blue-600 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold">Школа</h3>
+                                <p class="text-gray-400">Учусь в 10 классе</p>
+                                <div class="mt-4">
+                                    <h4 class="font-bold mb-2 text-lg animate-pulse">Оценки за 9 класс</h4>
+                                    <div class="grid grid-cols-2 md:grid-cols-3 gap-2 text-sm">
+                                    <div>Українська мова: 8</div>
+                                    <div>Українська література: 9</div>
+                                    <div>Зарубіжна література: 11</div>
+                                    <div>Англійська мова: 11</div>
+                                    <div>Французька мова: 10</div>
+                                    <div>Історія України: 10</div>
+                                    <div>Всесвітня історія: 10</div>
+                                    <div>Правознавство: 10</div>
+                                    <div>Алгебра: 9</div>
+                                    <div>Геометрія: 9</div>
+                                    <div>Біологія: 10</div>
+                                    <div>Географія: 10</div>
+                                    <div>Фізика: 10</div>
+                                    <div>Хімія: 11</div>
+                                    <div>Мистецтво: 12</div>
+                                    <div>Інформатика: 10</div>
+                                    <div>Трудове навчання: 10</div>
+                                    <div>Основи здоровʼя: 12</div>
+                                    <div>Фізична культура: 10</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-gray-800 p-3 rounded-lg mr-4">
+                                <i class="fas fa-music text-blue-500 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold">Музыкальная школа</h3>
+                                <p class="text-gray-400">Учусь в 9 классе по классу гитары</p>
+                                <p class="mt-2">Пишу свою музыку, сочиняю композиции</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Music Player -->
+                <section class="bg-black bg-opacity-50 p-6 rounded-xl neon-border">
+                    <h2 class="section-title text-2xl font-bold mb-6">Моя музыка</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Track 1 -->
+                        <div class="audio-player rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="text-lg font-semibold">Зимовая любовь</h3>
+                                <button class="play-btn text-white bg-transparent border-none cursor-pointer" data-src="1.mp3">
+                                    <i class="fas fa-play text-blue-600"></i>
+                                </button>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" id="progress-1"></div>
+                            </div>
+                            <audio id="audio-1" src="1.mp3"></audio>
+                        </div>
+                        
+                        <!-- Track 2 -->
+                        <div class="audio-player rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="text-lg font-semibold">Зачем любовь?</h3>
+                                <button class="play-btn text-white bg-transparent border-none cursor-pointer" data-src="2.mp3">
+                                    <i class="fas fa-play text-purple-500"></i>
+                                </button>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" id="progress-2"></div>
+                            </div>
+                            <audio id="audio-2" src="2.mp3"></audio>
+                        </div>
+                        
+                        <!-- Track 3 -->
+                        <div class="audio-player rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="text-lg font-semibold">Черный список</h3>
+                                <button class="play-btn text-white bg-transparent border-none cursor-pointer" data-src="3.mp3">
+                                    <i class="fas fa-play text-purple-500"></i>
+                                </button>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" id="progress-3"></div>
+                            </div>
+                            <audio id="audio-3" src="3.mp3"></audio>
+                        </div>
+                        
+                        <!-- Track 4 -->
+                        <div class="audio-player rounded-lg p-4">
+                            <div class="flex justify-between items-center mb-3">
+                                <h3 class="text-lg font-semibold">Светлые ночи</h3>
+                                <button class="play-btn text-white bg-transparent border-none cursor-pointer" data-src="4.mp3">
+                                    <i class="fas fa-play text-purple-500"></i>
+                                </button>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress" id="progress-4"></div>
+                            </div>
+                            <audio id="audio-4" src="4.mp3"></audio>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Life Status -->
+                <section class="status-box rounded-xl p-6">
+                    <h2 class="section-title text-2xl font-bold mb-4">Статус в жизни</h2>
+                    <blockquote class="text-xl italic text-center py-4">
+                        "Ничего у меня нету... Я все удалил «О»"
+                    </blockquote>
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6">
+                        <div class="text-center p-3 bg-gray-900 rounded-lg">
+                            <i class="fas fa-heart text-red-500 text-2xl mb-2"></i>
+                            <p>Девушки нет</p>
+                        </div>
+                        <div class="text-center p-3 bg-gray-900 rounded-lg">
+                            <i class="fas fa-ring text-yellow-500 text-2xl mb-2"></i>
+                            <p>Жены нет</p>
+                        </div>
+                        <div class="text-center p-3 bg-gray-900 rounded-lg">
+                            <i class="fas fa-baby text-blue-500 text-2xl mb-2"></i>
+                            <p>Детей нет</p>
+                        </div>
+                        <div class="text-center p-3 bg-gray-900 rounded-lg">
+                            <i class="fas fa-money-bill-wave text-green-500 text-2xl mb-2"></i>
+                            <p>900 грн</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column -->
+            <div class="space-y-8">
+                <!-- YouTube Channels -->
+                <section class="bg-black bg-opacity-50 p-6 rounded-xl neon-border">
+                    <h2 class="section-title text-2xl font-bold mb-6">YouTube каналы</h2>
+                    <div class="space-y-4">
+                        <a href="https://www.youtube.com/@PanterSS" target="_blank" class="channel-card block rounded-lg p-4 hover:bg-gray-800 transition">
+                            <div class="flex items-center">
+                                <div class="bg-red-600 p-3 rounded-lg mr-4">
+                                    <i class="fab fa-youtube text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold">PanterSS</h3>
+                                    <p class="text-gray-400">Основной канал</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.youtube.com/@Lablix" target="_blank" class="channel-card block rounded-lg p-4 hover:bg-gray-800 transition">
+                            <div class="flex items-center">
+                                <div class="bg-red-600 p-3 rounded-lg mr-4">
+                                    <i class="fab fa-youtube text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold">Lablix</h3>
+                                    <p class="text-gray-400">Музыкальный канал</p>
+                                </div>
+                            </div>
+                        </a>
+                        
+                        <a href="https://www.youtube.com/@DasherGD14" target="_blank" class="channel-card block rounded-lg p-4 hover:bg-gray-800 transition">
+                            <div class="flex items-center">
+                                <div class="bg-red-600 p-3 rounded-lg mr-4">
+                                    <i class="fab fa-youtube text-white text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-lg font-semibold">DasherGD14</h3>
+                                    <p class="text-gray-400">Игровой канал</p>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </section>
+
+                <!-- Nicknames -->
+                <section class="bg-black bg-opacity-50 p-6 rounded-xl neon-border">
+                    <h2 class="section-title text-2xl font-bold mb-4">Мои никнеймы</h2>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="skill-badge rounded-lg p-3">GhostPanter</div>
+                        <div class="skill-badge rounded-lg p-3">PanterSS</div>
+                        <div class="skill-badge rounded-lg p-3">John Kellar</div>
+                        <div class="skill-badge rounded-lg p-3">Panter</div>
+                        <div class="skill-badge rounded-lg p-3">MyLifeIt'sBigWin</div>
+                        <div class="skill-badge rounded-lg p-3">OnlyPanterS</div>
+                        <div class="skill-badge rounded-lg p-3">PanterS14</div>
+                        <div class="skill-badge rounded-lg p-3">Lablix</div>
+                    </div>
+                </section>
+
+                <!-- Twitch -->
+                <section class="bg-black bg-opacity-50 p-6 rounded-xl neon-border">
+                    <h2 class="section-title text-2xl font-bold mb-4">Twitch канал</h2>
+                    <a href="https://www.twitch.tv/mrpanterss" target="_blank" class="channel-card block rounded-lg p-4 hover:bg-gray-800 transition">
+                        <div class="flex items-center">
+                            <div class="bg-purple-600 p-3 rounded-lg mr-4">
+                                <i class="fab fa-twitch text-blue-400 text-xl"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold">MrPanterSS</h3>
+                                <p class="text-gray-400">Прямые трансляции</p>
+                            </div>
+                        </div>
+                    </a>
+                </section>
+
+                <!-- Skills -->
+                <section class="bg-black bg-opacity-50 p-6 rounded-xl neon-border">
+                    <h2 class="section-title text-2xl font-bold mb-4">Навыки</h2>
+                    <p class="mb-4">Умею работать с камерами, монтировать видео, обрабатывать фото</p>
+                    
+                    <div class="grid grid-cols-2 gap-3 mt-6">
+                        <div class="skill-badge rounded-lg p-3 flex items-center">
+                            <i class="fas fa-camera text-blue-500 text-xl mr-3"></i>
+                            <span>Работа с камерами</span>
+                        </div>
+                        <div class="skill-badge rounded-lg p-3 flex items-center">
+                            <i class="fas fa-video text-green-500 text-xl mr-3"></i>
+                            <span>Монтаж видео</span>
+                        </div>
+                        <div class="skill-badge rounded-lg p-3 flex items-center">
+                            <i class="fas fa-paint-brush text-yellow-500 text-xl mr-3"></i>
+                            <span>Фотошоп</span>
+                        </div>
+                        <div class="skill-badge rounded-lg p-3 flex items-center">
+                            <i class="fas fa-film text-red-500 text-xl mr-3"></i>
+                            <span>DaVinci Resolve</span>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-6">
+                        <h3 class="text-lg font-semibold mb-2">Программы</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-gray-800 rounded-full">Adobe Photoshop 2021</span>
+                            <span class="px-3 py-1 bg-gray-800 rounded-full">DaVinci Resolve</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Life Attitude -->
+                <section class="status-box rounded-xl p-6">
+                    <h2 class="section-title text-2xl font-bold mb-4">Отношение к жизни</h2>
+                    <div class="text-center py-4">
+                        <i class="fas fa-heart-broken text-red-500 text-5xl mb-4"></i>
+                        <p class="text-xl">Не навижу свою жизнь</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-6 px-4 text-center text-gray-500 mt-8 border-t border-gray-800">
+        <p>© 2025 Александр Михайлов. Все права не защищены.</p>
+        <p class="mt-2">"Ничего у меня нету... Я все удалил «О»"</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Audio player functionality
+            const players = document.querySelectorAll('.play-btn');
+            const audioElements = document.querySelectorAll('audio');
+            const progressBars = document.querySelectorAll('.progress');
+            let currentAudio = null;
+            
+            players.forEach((player, index) => {
+                player.addEventListener('click', function() {
+                    const audio = audioElements[index];
+                    const progressBar = progressBars[index];
+                    
+                    // Pause current audio if playing
+                    if (currentAudio && currentAudio !== audio) {
+                        currentAudio.pause();
+                        const currentIndex = Array.from(audioElements).indexOf(currentAudio);
+                        players[currentIndex].innerHTML = '<i class="fas fa-play text-purple-500"></i>';
+                    }
+                    
+                    if (audio.paused) {
+                        audio.play();
+                        player.innerHTML = '<i class="fas fa-pause text-purple-500"></i>';
+                        currentAudio = audio;
+                    } else {
+                        audio.pause();
+                        player.innerHTML = '<i class="fas fa-play text-purple-500"></i>';
+                        currentAudio = null;
+                    }
+                });
+            });
+            
+            // Update progress bars
+            audioElements.forEach((audio, index) => {
+                audio.addEventListener('timeupdate', function() {
+                    const progress = (audio.currentTime / audio.duration) * 100;
+                    progressBars[index].style.width = progress + '%';
+                    
+                    if (audio.ended) {
+                        players[index].innerHTML = '<i class="fas fa-play text-purple-500"></i>';
+                    }
+                });
+            });
+            
+            // Glitch effect for status
+            const statusBox = document.querySelector('.status-box');
+            setInterval(() => {
+                statusBox.style.borderColor = `hsl(${Math.random() * 360}, 100%, 50%)`;
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
